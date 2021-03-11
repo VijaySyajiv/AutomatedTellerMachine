@@ -54,6 +54,7 @@ public class Accounting extends HttpServlet {
 						req.setAttribute("thousandRupees",AtmMachine.tn);
 						RequestDispatcher rd=req.getRequestDispatcher("/Denomininations.jsp");
 						rd.forward(req,res);
+						System.out.println("suc");
 						
 						
 			         }
@@ -65,7 +66,7 @@ public class Accounting extends HttpServlet {
 					}
 			}
 			catch(Exception e) {
-				
+				System.out.println("Accounting "+e);
 			}
 
 		}

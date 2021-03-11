@@ -34,6 +34,12 @@ public class AccountDetails {
 
 	public int getAccountBalance() {
 		return accountBalance;
+	}
+
+	@Override
+	public String toString() {
+		return "AccountDetails [accountNumber=" + accountNumber + ", accountHolder=" + accountHolder + ", pinNumber="
+				+ pinNumber + ", accountBalance=" + accountBalance + "]";
 	} 
 	
 	

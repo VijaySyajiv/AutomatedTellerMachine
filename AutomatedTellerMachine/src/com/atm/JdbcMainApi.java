@@ -3,6 +3,7 @@ package com.atm;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -53,11 +54,18 @@ public class JdbcMainApi extends JdbcMainImp
 	}
 	
 	
-	public static Transaction[] statements(int userAccount) throws SQLException 
+	public static List<Transaction> statements(int userAccount) throws SQLException 
 	{
 		
 		JdbcMain jdbc=new JdbcMainImp();
 		return jdbc.statement(userAccount);
+		
+	}
+	public static List<AccountDetails> accountDetailss() throws SQLException 
+	{
+		
+		JdbcMain jdbc=new JdbcMainImp();
+		return jdbc.accountDetails();
 		
 	}
 	

@@ -46,7 +46,10 @@
 	    	   response.sendRedirect("Home.jsp");
 	       }
 	       %>
-	       
+	        <form action="Home.html" method="post">
+	           		<p style="color:red">Press Proceed  button to Process</p>
+	           	 	<input type="submit" value="Proceed">
+	           </form>
 	           </div>
 
 </body>

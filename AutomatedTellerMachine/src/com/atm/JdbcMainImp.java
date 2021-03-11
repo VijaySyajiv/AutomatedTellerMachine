@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JdbcMainImp implements JdbcMain {
 
@@ -128,9 +130,9 @@ public class JdbcMainImp implements JdbcMain {
 	}
 	
 	
-	public Transaction[] statement(int userAccount) throws SQLException
+	public List<Transaction> statement(int userAccount) throws SQLException
 	{
-		Transaction[] transaction=new Transaction[5];
+		List<Transaction> transaction=new ArrayList<Transaction>();
 		try {
 				
 				Class.forName("com.mysql.jdbc.Driver"); 	
@@ -142,7 +144,8 @@ public class JdbcMainImp implements JdbcMain {
 				int temp=4;
 				while(temp>=0 && rs.previous()) 
 				{
-					transaction[temp]=new Transaction(rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getInt(6));
+					Transaction transactions=new Transaction(rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getInt(6));
+					transaction.add(0,transactions);
 				     temp--;
 				}
 				
@@ -156,7 +159,36 @@ public class JdbcMainImp implements JdbcMain {
 			return transaction;  
     }
 	
-	
+	public  List<AccountDetails> accountDetails () 
+	    {
+	    	List<AccountDetails> account=new ArrayList<AccountDetails>();
+			try {
+					
+					Class.forName("com.mysql.jdbc.Driver"); 	
+					Connection con=DriverManager.getConnection(url,userName,password);
+					PreparedStatement st=con.prepareStatement("select * from accountdetails");
+					ResultSet rs=st.executeQuery();
+					
+					
+					while( rs.next()) 
+					{
+						AccountDetails accounts=new AccountDetails(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4));
+						System.out.println(accounts);
+						account.add(accounts);
+					    
+					}
+					
+		
+			}
+			catch(Exception e) 
+			{
+				System.out.println(e);
+			}
+					
+				return account;
+	    	
+	    	
+	    }
 	
 	
 	

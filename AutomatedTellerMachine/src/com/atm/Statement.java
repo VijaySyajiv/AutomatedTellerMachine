@@ -1,6 +1,7 @@
 package com.atm;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,9 +16,10 @@ public class Statement extends HttpServlet {
 		try {
 			    HttpSession session=req.getSession(); 
 			    AccountDetails account=(AccountDetails)session.getAttribute("account");
-			    Transaction[] transaction=JdbcMainApi.statements(account.accountNumber);
-				System.out.println(transaction[4]);
-				session.removeAttribute("account");
+			    List<Transaction> transaction=JdbcMainApi.statements(account.accountNumber);
+				System.out.println(transaction.get(0));
+				
+				req.setAttribute("transaction", transaction);
 				RequestDispatcher rd=req.getRequestDispatcher("/MiniStatement.jsp");
 				rd.forward(req,res);
 					

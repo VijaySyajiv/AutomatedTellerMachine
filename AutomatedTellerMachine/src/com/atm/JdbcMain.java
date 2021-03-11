@@ -2,6 +2,7 @@ package com.atm;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 public interface JdbcMain 
 {
@@ -25,6 +26,8 @@ public interface JdbcMain
 	void updateWithdrawTransaction(int accountNumber,AccountDetails userAccount,String type,int amount) throws SQLException, ClassNotFoundException ;
 
 	//this method is to give you last five transaction of given user
-	Transaction[] statement(int userAccount) throws SQLException;
+	  List<Transaction> statement(int userAccount) throws SQLException;
+	  
+	  List<AccountDetails> accountDetails() throws SQLException;
 
 }

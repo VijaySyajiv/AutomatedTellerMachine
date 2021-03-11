@@ -23,11 +23,13 @@ public class CheckBalance extends HttpServlet {
 					
 				}
 				else {
+					session.removeAttribute("account");
+					session.removeAttribute("menuOption");
 					res.sendRedirect("BalanceEndPage.html");
 				}
 		}
 		catch(Exception e) {
-			res.sendRedirect("ThankYouPage.html");
+			res.sendRedirect("Home.html");
 		}
 		
 	}

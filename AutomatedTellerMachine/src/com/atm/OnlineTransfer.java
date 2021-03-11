@@ -17,17 +17,19 @@ public class OnlineTransfer extends HttpServlet{
 			try {
 				    int accountNumber=Integer.parseInt(req.getParameter("accountNumber"));
 					HttpSession session=req.getSession();	
-					if(((AccountDetails)session.getAttribute("account"))!=null &&
-							(((AccountDetails)session.getAttribute("account")).accountNumber!=accountNumber))
+					AccountDetails userAccount=(AccountDetails)session.getAttribute("account");
+					if(userAccount!=null &&userAccount.accountNumber!=accountNumber)
 					{
-						
-						AccountDetails account=JdbcConnectivity.accountVerification(res,accountNumber);
-						if(account!=null) {							
+						System.out.println("OnlineTransfer fail");
+						AccountDetails account=JdbcMainApi.accountVerifications(accountNumber);
+						System.out.println("OnlineTransfer success");
+						if(account!=null) 
+						{							
 							session.setAttribute("transferAccount", account);
 							res.sendRedirect("TransferAmount.html");
 					    }	
-//						else
-							// res.sendRedirect("Transfer.jsp");
+						else
+							 res.sendRedirect("Transfer.jsp");
 							
 					}
 					else

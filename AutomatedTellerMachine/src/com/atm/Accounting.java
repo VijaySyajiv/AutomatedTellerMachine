@@ -25,8 +25,9 @@ public class Accounting extends HttpServlet {
 			userAccount.accountBalance-=transferamount;
 			transferAccount.accountBalance+=transferamount;
 			System.out.println("jdbc called");
-			JdbcConnectivity.onlineTransferAccounting(res,userAccount,transferAccount,transferamount);
+			JdbcMainApi.onlineTransferAccounting(userAccount, transferAccount, transferamount);
 			session.removeAttribute("account");
+			res.sendRedirect("ThankYouPage.html");
 			}
 			catch(Exception e) {
 				
@@ -45,7 +46,7 @@ public class Accounting extends HttpServlet {
 						userAccount.accountBalance-=transferamount;
 						AtmMachine.atmBalance-=transferamount;
 						System.out.println("jdbc called");
-						JdbcConnectivity.withdrawAccounting(userAccount,transferamount);
+						JdbcMainApi.withdrawAccounting(userAccount, transferamount);
 						session.removeAttribute("account");
 						req.setAttribute("hundredRupees",AtmMachine.hn);
 						req.setAttribute("fiveHundredRupees",AtmMachine.fn);

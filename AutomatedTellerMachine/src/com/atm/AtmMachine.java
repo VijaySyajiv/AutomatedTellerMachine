@@ -33,7 +33,7 @@ public class AtmMachine {
 				    	    AtmMachine.thousandRupees-=1;
 				    	    tn=1;
 				    	}
-				    	if(amount>0 && AtmMachine.hundredRupees>=10)
+				    	if(amount>0 && AtmMachine.hundredRupees>=10 && amount%500==0)
 				    	{			    	 
 				    		int temp=10;
 				    		while(temp>0 &&amount>=100 )
@@ -44,6 +44,7 @@ public class AtmMachine {
 				    		AtmMachine.hundredRupees-=(10-temp);
 				    		hn=(10-temp);
 				    	}
+				    	
 			    		
 			    		if(amount>=500) 
 			    		{
@@ -52,26 +53,21 @@ public class AtmMachine {
 				    		amount-=(amount/500)*500;
 			    		}
 			    		
-			    		if(amount>0 && (AtmMachine.hundredRupees*100>=amount)) 
-			    		{
-			    			AtmMachine.hundredRupees-=(amount/100);
-			    		    hn+=(amount/100);
-			    		}
+			    		if(amount>0 && AtmMachine.hundredRupees>=10)
+				    	{			    	 
+				    		int temp=10;
+				    		while(temp>0 &&amount>=100 )
+				    		{
+			                    amount-=100;
+			                    temp--;
+			                }
+				    		AtmMachine.hundredRupees-=(10-temp);
+				    		hn=(10-temp);
+				    	}
 			    	
 	        }
 	    	else
-	    	{
-	    		if(amount>0 && AtmMachine.hundredRupees>=10)
-		    	{			    	 
-		    		int temp=10;
-		    		while(temp>0 &&amount>=100 )
-		    		{
-	                    amount-=100;
-	                    temp--;
-	                }
-		    		AtmMachine.hundredRupees-=(10-temp);
-		    		hn=(10-temp);
-		    	}	    		
+	    	{	    			
 	    		if(amount>1000 && AtmMachine.thousandRupees>=3)
 		    	{
 	    			int temp=3;
@@ -83,6 +79,17 @@ public class AtmMachine {
 		    	    AtmMachine.thousandRupees-=(3-temp);
 		    	    tn=(3-temp);
 		    	}
+	    		if(amount>0 && AtmMachine.hundredRupees>=10 && amount%500==0)
+		    	{			    	 
+		    		int temp=10;
+		    		while(temp>0 &&amount>=100 )
+		    		{
+	                    amount-=100;
+	                    temp--;
+	                }
+		    		AtmMachine.hundredRupees-=(10-temp);
+		    		hn=(10-temp);
+		    	}
 	    	 
 	    		if(amount>=500 ) 
 	    		{
@@ -91,12 +98,17 @@ public class AtmMachine {
 		    		amount-=fn*500;
 	    		}
 	    		
-	    		if(amount>0 && (AtmMachine.hundredRupees*100>=amount)) 
-	    		{
-	    			hn+=(amount/100);
-	    			AtmMachine.hundredRupees-=hn;
-	    		    amount-=hn*100;
-	    		}
+	    		if(amount>0 && AtmMachine.hundredRupees>=10)
+		    	{			    	 
+		    		int temp=10;
+		    		while(temp>0 &&amount>=100 )
+		    		{
+	                    amount-=100;
+	                    temp--;
+	                }
+		    		AtmMachine.hundredRupees-=(10-temp);
+		    		hn=(10-temp);
+		    	}	    	
 	    	}
 	    	AtmMachine.hn=hn;
 	    	AtmMachine.fn=fn;

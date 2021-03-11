@@ -43,9 +43,10 @@ public class Accounting extends HttpServlet {
 					int transferamount=(int)session.getAttribute("transferamount");
 					if(transferamount<=AtmMachine.atmBalance && AtmMachine.denomininations(transferamount))
 					{
+						
 						userAccount.accountBalance-=transferamount;
 						AtmMachine.atmBalance-=transferamount;
-						System.out.println("jdbc called");
+						System.out.println("ATM Balance "+AtmMachine.atmBalance);
 						JdbcMainApi.withdrawAccounting(userAccount, transferamount);
 						session.removeAttribute("account");
 						req.setAttribute("hundredRupees",AtmMachine.hn);
@@ -58,6 +59,7 @@ public class Accounting extends HttpServlet {
 			         }
 					else
 					{
+						System.out.println(AtmMachine.atmBalance);
 						session.removeAttribute("account");
 						res.sendRedirect("AtmMachineBalanceNull.html");
 					}

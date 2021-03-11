@@ -63,5 +63,14 @@
 	      <servlet-name>statement</servlet-name>
 	      <url-pattern>/statement</url-pattern>
 	</servlet-mapping>
+	<servlet>
+	      <servlet-name>loader</servlet-name>
+	      <servlet-class>com.atm.AtmLoader</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+	      <servlet-name>loader</servlet-name>
+	      <url-pattern>/loader</url-pattern>
+	</servlet-mapping>
 	
 </web-app>

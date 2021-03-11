@@ -1,6 +1,18 @@
 package com.atm;
 
-public class AtmMachine {
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+public class AtmMachine extends HttpServlet {
+	
+	
 		static int  atmBalance;
 	    static int thousandRupees,fiveHundredRupees,hundredRupees;
 	    static int hn,fn,tn;
@@ -11,7 +23,10 @@ public class AtmMachine {
 	    	thousandRupees=temp*20;
 	    	fiveHundredRupees=temp*100;
 	    	hundredRupees=temp*300;
+	    	System.out.println(AtmMachine.atmBalance);
 	    }
+	    
+	    
 	    public static boolean denomininations(int amount) 
 	    {
 	    	int hn=0,fn=0,tn=0,tempAmount=amount;
@@ -116,8 +131,8 @@ public class AtmMachine {
 	    	System.out.println(AtmMachine.hundredRupees+" "+hn);
 			System.out.println(AtmMachine.fiveHundredRupees+" "+fn);
 			System.out.println(AtmMachine.thousandRupees+" "+tn);
-	    	
-	          return ((hn*100)+(fn*500)+(tn*1000))==tempAmount?true:false ;
+	    	int temp=((hn*100)+(fn*500)+(tn*1000));
+	          return temp==tempAmount?true:false ;
 	    }
    
 

@@ -20,31 +20,40 @@ public class ZohoBankMenu extends HttpServlet {
 		session.setAttribute("menuOption", option);
 		AccountDetails account=(AccountDetails)session.getAttribute("account");
 		PrintWriter pr=res.getWriter();
-		switch(option)
-		{
-			case "checkBalance":
-				res.sendRedirect("BalanceDisplay.jsp");
-//				RequestDispatcher rd=req.getRequestDispatcher("/Home.html");
-//				rd.forward(req,res);
-				
-				break;
-			case "withDraw":
-				res.sendRedirect("WithdrawDisplay.html");
-				break;
-			case "transfer":
-				res.sendRedirect("Transfer.html");
-				break;
-			case "miniStatement":
-				System.out.println("4");
-				break;
-			default:
-				System.out.println("5");
-				break;
-			
+		if(account!=null) {
+				switch(option)
+				{
+					case "checkBalance":
+						req.setAttribute("balance",account.accountBalance);
+						RequestDispatcher rd=req.getRequestDispatcher("/BalanceDisplay.jsp");
+						rd.forward(req,res);
+						session.removeAttribute("account"); 
+						session.removeAttribute("menuOption"); 
+						
+						break;
+					case "withDraw":
+						System.out.println("wdm");
+						res.sendRedirect("WithdrawDisplay.html");
+						break;
+					case "transfer":
+						res.sendRedirect("Transfer.html");
+						break;
+					case "miniStatement":
+						res.sendRedirect("statement");
+						
+						break;
+					default:
+						System.out.println("5");
+						break;
+					
+				}
+			}
+		else {
+			res.sendRedirect("Home.html");
 		}
 		}
 		catch(Exception e) {
-			res.sendRedirect("Home.jsp");
+			res.sendRedirect("Home.html");
 		}
 
    }

@@ -29,7 +29,18 @@
 	       <p style="color:red">Account Balance </p>
 	       <% 
 	         try{
-	         out.print(request.getAttribute("balance"));
+	         int hn=(int)request.getAttribute("hundredRupees");
+	         int fn=(int)request.getAttribute("fiveHundredRupees");
+	         int tn=(int)request.getAttribute("thousandRupees");
+	         if(hn!=0)
+	        	 out.println(hn+" * 100 = "+(hn*100));
+	         if(fn!=0)
+	        	 out.println("<br>"+fn+" * 500 = "+(fn*500));
+	         
+	         if(tn!=0)
+	        	 out.println("<br>"+tn+" * 1000 = "+(tn*1000));
+	         
+	         out.println("<br><br>Total = "+((tn*1000)+(fn*500)+(hn*100)));
 	         }
 	       catch(Exception e){
 	    	   response.sendRedirect("Home.jsp");

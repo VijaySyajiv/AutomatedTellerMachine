@@ -16,7 +16,8 @@ public class CheckBalance extends HttpServlet {
 				HttpSession session=req.getSession(); 
 				AccountDetails account=(AccountDetails)session.getAttribute("account");
 				int amount=(int)session.getAttribute("transferamount");
-				if(userBalanceValidate(account,amount)) {
+				if(userBalanceValidate(account,amount)) 
+				{
 					System.out.println("CheckBalance");
 					res.sendRedirect("accounts");
 					

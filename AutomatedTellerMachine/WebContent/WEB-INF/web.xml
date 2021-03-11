@@ -54,4 +54,14 @@
 	      <servlet-name>accounts</servlet-name>
 	      <url-pattern>/accounts</url-pattern>
 	</servlet-mapping>
+	<servlet>
+	      <servlet-name>statement</servlet-name>
+	      <servlet-class>com.atm.Statement</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+	      <servlet-name>statement</servlet-name>
+	      <url-pattern>/statement</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

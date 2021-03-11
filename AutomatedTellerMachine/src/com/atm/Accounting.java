@@ -2,6 +2,7 @@ package com.atm;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,6 @@ public class Accounting extends HttpServlet {
 		System.out.println("Accounting");
 		HttpSession session=req.getSession(); 
 		AccountDetails userAccount=(AccountDetails)session.getAttribute("account");
-		
 		String option=(String)session.getAttribute("menuOption");
 		System.out.println("Accounting session");
 		if(option.equals("transfer"))
@@ -25,8 +25,8 @@ public class Accounting extends HttpServlet {
 			userAccount.accountBalance-=transferamount;
 			transferAccount.accountBalance+=transferamount;
 			System.out.println("jdbc called");
-			JdbcConnectivity.onlineTransferAccounting(res,userAccount,transferAccount);
-			session.invalidate();
+			JdbcConnectivity.onlineTransferAccounting(res,userAccount,transferAccount,transferamount);
+			session.removeAttribute("account");
 			}
 			catch(Exception e) {
 				
@@ -35,9 +35,36 @@ public class Accounting extends HttpServlet {
 			
 		}
 		
-		else if(option.equals("withdarw"))
+		else if(option.equals("withDraw"))
 		{
+			try {
 			
+					int transferamount=(int)session.getAttribute("transferamount");
+					if(transferamount<=AtmMachine.atmBalance && AtmMachine.denomininations(transferamount))
+					{
+						userAccount.accountBalance-=transferamount;
+						AtmMachine.atmBalance-=transferamount;
+						System.out.println("jdbc called");
+						JdbcConnectivity.withdrawAccounting(userAccount,transferamount);
+						session.removeAttribute("account");
+						req.setAttribute("hundredRupees",AtmMachine.hn);
+						req.setAttribute("fiveHundredRupees",AtmMachine.fn);
+						req.setAttribute("thousandRupees",AtmMachine.tn);
+						RequestDispatcher rd=req.getRequestDispatcher("/Denomininations.jsp");
+						rd.forward(req,res);
+						
+						
+			         }
+					else
+					{
+						session.removeAttribute("account");
+						res.sendRedirect("AtmMachineBalanceNull.html");
+					}
+			}
+			catch(Exception e) {
+				
+			}
+
 		}
 		
 		

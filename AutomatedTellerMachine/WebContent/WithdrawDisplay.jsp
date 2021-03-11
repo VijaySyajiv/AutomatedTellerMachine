@@ -3,16 +3,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-	      <title>online Transfer Page</title>
+	      <title>withdraw Page</title>
 	      <style>
 	      body { 
 			    background-color: #000080;
 				}
 				h1{
 				background-color: white;
-               text-align: center;
-              }
-               p{
                text-align: center;
               }
               h2{
@@ -25,16 +22,18 @@
 	      </style>
 	</head>
 	<body>
-	      <h1 >Zoho Bank online Money Transfer</h1>
+	      <h1 >Amount Should be multiple of 100 and Min Rs 100 Max Rs 10,000</h1>
 	      <div>
-	        <form action="transfer" method="post">
-	           		Enter the Account Number:<input type="text" name="accountNumber"><br>
+	        <form action="amountValidate" method="post">
+	           		<h2>Enter the Amount:</h2><input type="text" name="amount"><br>
 	           		<br>
-	           	 	<input type="submit">
-	           	 	<p style="color:red">Incorrect Account Details</p>
+	           		<input type="submit"><br>
+	           		 <p style="color:red">Please Give Valid Input</p>
 	           </form>
 	      </div>
-	      
+	           
+	           
+	   
 	</body>
 </html>
 </html>

@@ -29,7 +29,7 @@
 	       <p style="color:red">Account Balance </p>
 	       <% 
 	         try{
-	         out.print(request.getAttribute("balance"));
+	        	 
 	         }
 	       catch(Exception e){
 	    	   response.sendRedirect("Home.jsp");

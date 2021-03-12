@@ -54,7 +54,7 @@
 		          session.removeAttribute("menuoption");
             %> 
         </table>
-        <form action="Home.html" method="post">
+        <form action="AtmStartUp.jsp" method="post">
 	           		
 	           	 	<input type="submit">
 	           </form>

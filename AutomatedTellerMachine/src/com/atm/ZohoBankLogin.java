@@ -20,7 +20,10 @@ public class ZohoBankLogin extends HttpServlet{
 			try {
 					int accountNumber=Integer.parseInt(req.getParameter("accountNumber"));
 					int pinNumber=Integer.parseInt(req.getParameter("pinNumber"));
-					PrintWriter pr=res.getWriter();
+					if(AtmMachine.atmBalance==0){
+						System.out.println("call");
+			        	AtmMachine atmObject=new AtmMachine(100000);
+			        }
 					AccountDetails account=JdbcMainApi.logInVerifications(accountNumber,pinNumber);
 					if(account!=null) {
 

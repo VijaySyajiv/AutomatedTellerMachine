@@ -72,5 +72,13 @@
 	      <servlet-name>loader</servlet-name>
 	      <url-pattern>/loader</url-pattern>
 	</servlet-mapping>
+	<servlet>
+	      <servlet-name>startup</servlet-name>
+	      <servlet-class>com.atm.StartUP</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	      <servlet-name>startup</servlet-name>
+	      <url-pattern>/startup</url-pattern>
+	</servlet-mapping>
 	
 </web-app>

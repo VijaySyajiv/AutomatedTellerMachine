@@ -17,7 +17,7 @@ public class Statement extends HttpServlet {
 			    HttpSession session=req.getSession(); 
 			    AccountDetails account=(AccountDetails)session.getAttribute("account");
 			    List<Transaction> transaction=JdbcMainApi.statements(account.accountNumber);
-				System.out.println(transaction.get(0));
+				System.out.println("Statement succesfull");
 				
 				req.setAttribute("transaction", transaction);
 				RequestDispatcher rd=req.getRequestDispatcher("/MiniStatement.jsp");

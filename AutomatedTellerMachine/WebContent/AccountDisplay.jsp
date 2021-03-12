@@ -1,4 +1,4 @@
-<%@ page import="com.atm.Transaction" import="com.atm.AccountDetails" import="java.util.List" language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page import="com.atm.Transaction" import="com.atm.AccountDetails" import="java.util.List" import="com.atm.JdbcMainApi" language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -39,8 +39,8 @@
           <th><b>Balance</b></th> 
          </tr> 
        
-        <%List<AccountDetails> bankAccount=(List)session.getAttribute("bankAccount"); 
-          for(AccountDetails a:bankAccount){%> 
+        <%List<AccountDetails> account=JdbcMainApi.accountDetailss();; 
+          for(AccountDetails a:account){%> 
         
             <tr> 
 	              

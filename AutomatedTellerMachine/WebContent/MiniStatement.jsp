@@ -1,4 +1,4 @@
-<%@ page import="com.atm.Transaction" import="com.atm.AccountDetails" import="java.util.List" language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page import="com.atm.Transaction" import="com.atm.AccountDetails" import="java.util.Collection" import="java.util.List" language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -47,26 +47,28 @@
          </tr> 
        
         <%List<Transaction> transaction=(List)request.getAttribute("transaction"); 
-        int temp=1;
-          for(Transaction t:transaction){%> 
+          int temp=1;
+         
+          
+          for(int i=transaction.size()-1;i>=0;i--){%> 
         
             <tr> 
 	                <td><%=temp++%></td>
 	                <%
 	                String remarks="";
-	                   if(t.getAccountNumberTo()!=0)
+	                   if(transaction.get(i).getAccountNumberTo()!=0)
 	                   {
-		                     if(t.getTransactionType().equals("Debit"))
-		                    	 remarks="Fund Transfer to Acc "+t.getAccountNumberTo();
+		                     if(transaction.get(i).getTransactionType().equals("Debit"))
+		                    	 remarks="Fund Transfer to Acc "+transaction.get(i).getAccountNumberTo();
 		                     else
-		                    	 remarks="Fund Transfer from Acc "+t.getAccountNumberFrom();
+		                    	 remarks="Fund Transfer from Acc "+transaction.get(i).getAccountNumberFrom();
 	                   }
 	                   else
-	                	   remarks="Debited "+t.getTransactionAmount()+" from ATM";
+	                	   remarks="Debited "+transaction.get(i).getTransactionAmount()+" from ATM";
 	                %> 
 	                <td><%=remarks%></td> 
-	                <td><%=t.getTransactionType()%></td>
-	                <td><%=t.getTransactionAmount()%></td> 
+	                <td><%=transaction.get(i).getTransactionType()%></td>
+	                <td><%=transaction.get(i).getTransactionAmount()%></td> 
             </tr> 
             <%}
 		          session.removeAttribute("account");

@@ -26,7 +26,7 @@ public class AtmLoader extends HttpServlet
 				HttpSession session=req.getSession();
 				session.setAttribute("bankAccount",accounts );
 				
-				RequestDispatcher rd=req.getRequestDispatcher("/AccountDisplay.jsp");
+				RequestDispatcher rd=req.getRequestDispatcher("/AtmStartUp.jsp");
 				rd.forward(req,res);			
 		    }				
 		   else 				   

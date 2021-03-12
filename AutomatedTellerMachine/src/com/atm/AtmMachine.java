@@ -1,31 +1,23 @@
 package com.atm;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-public class AtmMachine extends HttpServlet {
+public class AtmMachine  {
 	
 	
-		static int  atmBalance;
+		static int  atmBalance=0;
 	    static int thousandRupees,fiveHundredRupees,hundredRupees;
 	    static int hn,fn,tn;
 	    //constructor
 	    AtmMachine(int atmBalance){
-	    	this.atmBalance=atmBalance;
+	    	AtmMachine.atmBalance=atmBalance;
 	    	int temp=atmBalance/100000; 
 	    	thousandRupees=temp*20;
 	    	fiveHundredRupees=temp*100;
 	    	hundredRupees=temp*300;
 	    	System.out.println(AtmMachine.atmBalance);
 	    }
-	    
+	    public static int getatmBalance() {
+	    	return AtmMachine.atmBalance;
+	    }
 	    
 	    public static boolean denomininations(int amount) 
 	    {
@@ -38,7 +30,7 @@ public class AtmMachine extends HttpServlet {
 				    		hn=amount/100;
 				    		AtmMachine.hundredRupees-=hn;
 				    		amount-=hn*100;
-				    		//return true;
+				    		
 				    	}
 				    	//else
 				    		//return false; because  hundred not there is not
@@ -48,16 +40,14 @@ public class AtmMachine extends HttpServlet {
 				    	    AtmMachine.thousandRupees-=1;
 				    	    tn=1;
 				    	}
-				    	if(amount>0 && AtmMachine.hundredRupees>=10 && amount%500==0)
+				    	
+				    	if(amount>0 && AtmMachine.hundredRupees>=10 )
 				    	{			    	 
-				    		int temp=10;
-				    		while(temp>0 &&amount>=100 )
-				    		{
-			                    amount-=100;
-			                    temp--;
-			                }
-				    		AtmMachine.hundredRupees-=(10-temp);
-				    		hn=(10-temp);
+				    		int temp=(amount%1000)/100;
+				    		temp =temp==0?10:temp;
+				    		AtmMachine.hundredRupees-=temp;
+				    		hn=temp;
+				    		amount-=(temp*100);
 				    	}
 				    	
 			    		
@@ -68,18 +58,7 @@ public class AtmMachine extends HttpServlet {
 				    		amount-=(amount/500)*500;
 			    		}
 			    		
-			    		if(amount>0 && AtmMachine.hundredRupees>=10)
-				    	{			    	 
-				    		int temp=10;
-				    		while(temp>0 &&amount>=100 )
-				    		{
-			                    amount-=100;
-			                    temp--;
-			                }
-				    		AtmMachine.hundredRupees-=(10-temp);
-				    		hn=(10-temp);
-				    	}
-			    	
+//			    		
 	        }
 	    	else
 	    	{	    			
@@ -94,16 +73,13 @@ public class AtmMachine extends HttpServlet {
 		    	    AtmMachine.thousandRupees-=(3-temp);
 		    	    tn=(3-temp);
 		    	}
-	    		if(amount>0 && AtmMachine.hundredRupees>=10 && amount%500==0)
+	    		if(amount>0 && AtmMachine.hundredRupees>=10)
 		    	{			    	 
-		    		int temp=10;
-		    		while(temp>0 &&amount>=100 )
-		    		{
-	                    amount-=100;
-	                    temp--;
-	                }
-		    		AtmMachine.hundredRupees-=(10-temp);
-		    		hn=(10-temp);
+	    			int temp=(amount%1000)/100;
+		    		temp =temp==0?10:temp;
+		    		AtmMachine.hundredRupees-=temp;
+		    		hn=temp;
+		    		amount-=(temp*100);
 		    	}
 	    	 
 	    		if(amount>=500 ) 
@@ -113,17 +89,7 @@ public class AtmMachine extends HttpServlet {
 		    		amount-=fn*500;
 	    		}
 	    		
-	    		if(amount>0 && AtmMachine.hundredRupees>=10)
-		    	{			    	 
-		    		int temp=10;
-		    		while(temp>0 &&amount>=100 )
-		    		{
-	                    amount-=100;
-	                    temp--;
-	                }
-		    		AtmMachine.hundredRupees-=(10-temp);
-		    		hn=(10-temp);
-		    	}	    	
+	    			
 	    	}
 	    	AtmMachine.hn=hn;
 	    	AtmMachine.fn=fn;

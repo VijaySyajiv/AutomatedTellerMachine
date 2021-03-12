@@ -21,10 +21,10 @@ public class AtmLoader extends HttpServlet
 			if(amount%100000==0) 
 			{
 				AtmMachine atmObject=new AtmMachine(amount);
-				List<AccountDetails> accounts=JdbcMainApi.accountDetailss();
-				System.out.println(accounts.get(0).toString());
+				
+//				System.out.println(accounts.get(0).toString());
 				HttpSession session=req.getSession();
-				session.setAttribute("bankAccount",accounts );
+//				session.setAttribute("bankAccount",accounts );
 				
 				RequestDispatcher rd=req.getRequestDispatcher("/AtmStartUp.jsp");
 				rd.forward(req,res);			
